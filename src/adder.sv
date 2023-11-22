@@ -1,11 +1,12 @@
 module adder #(
     parameter WIDTH = 32
 ) (
-    input  [WIDTH-1:0] a,
-    input  [WIDTH-1:0] b,
-    output [WIDTH-1:0] o
+    input  wire [WIDTH-1:0] a,
+    input  wire [WIDTH-1:0] b,
+    output reg  [WIDTH-1:0] o
 );
-  wire c[WIDTH-1:0];
+
+  wire c[WIDTH-1:0]  /*verilator split_var*/;
   genvar i;
   full_adder fa (
       .a (a[0]),
