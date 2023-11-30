@@ -1,15 +1,11 @@
-module tb_adder #(
-    parameter TB_WIDTH = 32
-);
+module tb_adder;
 
-  reg [TB_WIDTH-1:0] a;
-  reg [TB_WIDTH-1:0] b;
+  reg [31:0] a;
+  reg [31:0] b;
   reg sub;
-  wire [TB_WIDTH-1:0] o;
+  wire [31:0] o;
 
-  adder #(
-      .WIDTH(TB_WIDTH)
-  ) dut (
+  adder dut (
       .a  (a),
       .b  (b),
       .sub(sub),

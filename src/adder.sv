@@ -1,13 +1,11 @@
-module adder #(
-    parameter WIDTH = 32
-) (
-    input wire [WIDTH-1:0] a,
-    input wire [WIDTH-1:0] b,
+module adder (
+    input wire [31:0] a,
+    input wire [31:0] b,
     input wire sub,
-    output reg [WIDTH-1:0] o
+    output reg [31:0] o
 );
 
-  wire c[WIDTH-1:0]  /*verilator split_var*/;
+  wire c[31:0]  /*verilator split_var*/;
   genvar i;
   full_adder fa (
       .a (a[0]),
@@ -18,7 +16,7 @@ module adder #(
   );
 
   generate
-    for (i = 1; i < WIDTH; i = i + 1) begin : no
+    for (i = 1; i < 32; i = i + 1) begin : no
       full_adder fa (
           .a (a[i]),
           .b (b[i] ^ sub),
