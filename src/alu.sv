@@ -52,7 +52,7 @@ module alu (
       3'h4: o = a ^ b;
       3'h5: o = srl_res;
       3'h6: o = a | b;
-      3'h7: o = a ^ b;
+      3'h7: o = a & b;
     endcase
   end
 
