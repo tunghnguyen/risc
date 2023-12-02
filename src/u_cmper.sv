@@ -13,6 +13,9 @@ module u_cmper (
       .o  (sub_res)
   );
 
-  assign o = {31'b0, sub_res[31]};
+  always @(*) begin
+    if (a[31] == b[31]) o = {31'b0, sub_res[31]};
+    else o = {31'b0, (a[31] == 1'b0) ? 1'b1 : 1'b0};
+  end
 
 endmodule
