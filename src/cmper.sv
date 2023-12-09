@@ -1,7 +1,8 @@
-module s_cmper (
+module cmper (
     input  wire [31:0] a,
     input  wire [31:0] b,
-    output reg  [31:0] o
+    output reg  [31:0] o,
+    output reg  [31:0] uo
 );
 
   wire [31:0] sub_res;
@@ -14,8 +15,9 @@ module s_cmper (
   );
 
   always @(*) begin
-    if (a[31] == b[31]) o = {31'b0, sub_res[31]};
-    else o = {31'b0, (a[31] == 1'b1) ? 1'b1 : 1'b0};
+    o = {31'b0, sub_res[31]};
+    if (a[31] ~^ b[31]) uo = {31'b0, sub_res[31]};
+    else uo = {31'b0, b[31]};
   end
 
 endmodule

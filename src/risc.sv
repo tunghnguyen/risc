@@ -1,3 +1,3 @@
-module risc ();
+module risc;
 
 endmodule

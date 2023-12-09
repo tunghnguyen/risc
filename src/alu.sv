@@ -1,8 +1,9 @@
 module alu (
-    input  wire [31:0] a,
-    input  wire [31:0] b,
-    input  wire [ 3:0] funct,
-    output reg  [31:0] o
+    input wire [31:0] a,
+    input wire [31:0] b,
+    input wire [3:0] funct,
+    output reg [31:0] o,
+    output reg zero
 );
 
   wire [31:0] add_res;
@@ -18,25 +19,20 @@ module alu (
       .o  (add_res)
   );
 
-  l_shifter sller0 (
+  l_shifter l_shifter0 (
       .a(a),
       .b(b[4:0]),
       .o(sll_res)
   );
 
-  s_cmper slter0 (
-      .a(a),
-      .b(b),
-      .o(slt_res)
+  cmper cmper0 (
+      .a (a),
+      .b (b),
+      .o (slt_res),
+      .uo(sltu_res)
   );
 
-  u_cmper sltuer0 (
-      .a(a),
-      .b(b),
-      .o(sltu_res)
-  );
-
-  r_shifter srler0 (
+  r_shifter r_shifter0 (
       .a(a),
       .b(b[4:0]),
       .arith(funct[3]),
@@ -55,5 +51,7 @@ module alu (
       3'h7: o = a & b;
     endcase
   end
+
+  assign zero = o == 32'b0;
 
 endmodule
