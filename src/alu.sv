@@ -52,6 +52,6 @@ module alu (
     endcase
   end
 
-  assign zero = o == 32'b0;
+  assign zero = ~|o;
 
 endmodule
