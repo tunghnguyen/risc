@@ -6,6 +6,7 @@ timing/
 obj_dir/
 */*_sim/
 PLLJ_PLLSPE_INFO.txt
+transcript
 
 *_generation_script*
 *_inst.vhd
