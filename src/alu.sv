@@ -1,7 +1,7 @@
 module alu (
     input wire [31:0] a,
     input wire [31:0] b,
-    input wire [3:0] funct,
+    input wire [3:0] alu_op,
     output reg [31:0] o,
     output reg zero
 );
@@ -15,7 +15,7 @@ module alu (
   adder adder0 (
       .a  (a),
       .b  (b),
-      .sub(funct[3]),
+      .sub(alu_op[3]),
       .o  (add_res)
   );
 
@@ -35,12 +35,12 @@ module alu (
   r_shifter r_shifter0 (
       .a(a),
       .b(b[4:0]),
-      .arith(funct[3]),
+      .arith(alu_op[3]),
       .o(srl_res)
   );
 
   always @(*) begin
-    case (funct[2:0])
+    case (alu_op[2:0])
       3'h0: o = add_res;
       3'h1: o = sll_res;
       3'h2: o = slt_res;
