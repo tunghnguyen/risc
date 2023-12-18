@@ -3,6 +3,7 @@ module tb_adder;
   reg [31:0] a;
   reg [31:0] b;
   reg sub;
+
   wire [31:0] o;
 
   adder dut (

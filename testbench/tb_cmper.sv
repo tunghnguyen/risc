@@ -2,12 +2,15 @@ module tb_cmper;
 
   reg  [31:0] a;
   reg  [31:0] b;
-  wire [31:0] o;
 
-  s_cmper dut (
-      .a(a),
-      .b(b),
-      .o(o)
+  wire [31:0] o;
+  wire [31:0] uo;
+
+  cmper dut (
+      .a (a),
+      .b (b),
+      .o (o),
+      .uo(uo)
   );
 
   function void init();

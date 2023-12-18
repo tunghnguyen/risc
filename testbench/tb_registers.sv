@@ -6,8 +6,9 @@ module tb_registers;
   reg [31:0] w_dat;
   reg write;
   reg clk;
-  reg [31:0] r_dat0;
-  reg [31:0] r_dat1;
+
+  wire [31:0] r_dat0;
+  wire [31:0] r_dat1;
 
   registers dut (
       .r_reg0(r_reg0),

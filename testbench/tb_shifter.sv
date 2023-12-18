@@ -21,8 +21,8 @@ module tb_shifter;
 
   task test();
     repeat (49) begin
-      #(20) a <= $random % 2**31;
-      b <= $random % 2**5;
+      #(20) a <= $random % 2 ** 31;
+      b <= $random % 2 ** 5;
       arith <= $random % 2;
     end
   endtask
