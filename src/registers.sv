@@ -15,7 +15,7 @@ module registers (
   assign r_dat0 = regs[r_reg0];
   assign r_dat1 = regs[r_reg1];
 
-  always @(posedge clk) begin
+  always_ff @(posedge clk) begin
     if (write & |w_reg) regs[w_reg] <= w_dat;
   end
 
