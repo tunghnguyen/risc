@@ -4,14 +4,14 @@ module inst_mem (
     output reg [31:0] inst
 );
 
-  reg [7:0] mem[2048];
+  reg [31:0] mem[16];
 
   initial begin
-    $readmemh("../memory/inst.mem", mem);
+    $readmemh("../memory/rom.mem", mem);
   end
 
-  always_ff @(posedge clk) begin
-    inst <= mem[addr+:4];
+  always @(posedge clk) begin
+    inst[31:0] <= mem[addr>>2];
   end
 
 endmodule

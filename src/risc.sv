@@ -30,6 +30,7 @@ module risc (
 
   wire [31:0] imm;
   wire [3:0] alu_op;
+  wire [2:0] dat_op;
   wire alu_src;
   wire mem_to_reg;
   wire reg_write;
@@ -42,6 +43,7 @@ module risc (
       .inst(inst),
       .imm(imm),
       .alu_op(alu_op),
+      .dat_op(dat_op),
       .alu_src(alu_src),
       .mem_to_reg(mem_to_reg),
       .reg_write(reg_write),
@@ -101,6 +103,7 @@ module risc (
   dat_mem dat_mem0 (
       .addr(o_alu),
       .w_dat(r_dat1),
+      .dat_op(dat_op),
       .mem_read(mem_read),
       .mem_write(mem_write),
       .clk(clk),

@@ -10,12 +10,12 @@ module registers (
 );
 
   reg [31:0] regs[32];
-  initial regs[0] = 32'b0;
+  initial regs = '{default: '0};
 
   assign r_dat0 = regs[r_reg0];
   assign r_dat1 = regs[r_reg1];
 
-  always_ff @(posedge clk) begin
+  always @(posedge clk) begin
     if (write & |w_reg) regs[w_reg] <= w_dat;
   end
 

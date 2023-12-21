@@ -2,6 +2,7 @@ module decoder (
     input wire [31:0] inst,
     output reg [31:0] imm,
     output reg [3:0] alu_op,
+    output reg [2:0] dat_op,
     output reg alu_src,
     output reg mem_to_reg,
     output reg reg_write,
@@ -23,23 +24,20 @@ module decoder (
 
       7'b0010011: begin  // arithmetic imm
         imm = {{20{inst[31]}}, inst[31:20]};
-        ctrl_lines = {{inst[30], inst[14:12]}, 7'b1010000};
+        case (inst[14:12])
+          3'h5: ctrl_lines = {{1'b1, inst[14:12]}, 7'b1010000};
+          default: ctrl_lines = {{1'b0, inst[14:12]}, 7'b1010000};
+        endcase
       end
 
       7'b0000011: begin  // load
         imm = {{20{inst[31]}}, inst[31:20]};
-        case (inst[14:12])
-          3'h2: ctrl_lines = {{1'b0, 3'h0}, 7'b1111000};  // lw
-          default: ctrl_lines = 11'b0;
-        endcase
+        ctrl_lines = {{1'b0, 3'h0}, 7'b1111000};
       end
 
       7'b0100011: begin  // store
         imm = {{20{inst[31]}}, inst[31:25], inst[11:7]};
-        case (inst[14:12])
-          3'h2: ctrl_lines = {{1'b0, 3'h0}, 7'b1000100};  // sw
-          default: ctrl_lines = 11'b0;
-        endcase
+        ctrl_lines = {{1'b0, 3'h0}, 7'b1000100};
       end
 
       7'b1100011: begin  // branch
@@ -89,6 +87,7 @@ module decoder (
   end
 
   assign alu_op = ctrl_lines[10:7];
+  assign dat_op = inst[14:12];
   assign alu_src = ctrl_lines[6];
   assign mem_to_reg = ctrl_lines[5];
   assign reg_write = ctrl_lines[4];

@@ -4,6 +4,8 @@ module pc (
     output reg [31:0] o
 );
 
+  initial o = 32'b0;
+
   always @(posedge clk) begin
     o <= imm;
   end
