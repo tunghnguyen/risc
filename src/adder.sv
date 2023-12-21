@@ -5,8 +5,8 @@ module adder (
     output reg [31:0] o
 );
 
-  wire c[31:0]  /*verilator split_var*/;
-  genvar i;
+  wire c[32]  /*verilator split_var*/;
+
   full_adder fa (
       .a (a[0]),
       .b (b[0] ^ sub),
@@ -16,7 +16,7 @@ module adder (
   );
 
   generate
-    for (i = 1; i < 32; i = i + 1) begin : no
+    for (genvar i = 1; i < 32; i = i + 1) begin : g_adder
       full_adder fa (
           .a (a[i]),
           .b (b[i] ^ sub),
