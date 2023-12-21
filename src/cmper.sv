@@ -14,7 +14,7 @@ module cmper (
       .o  (sub_res)
   );
 
-  always @(*) begin
+  always_comb begin
     o = {31'b0, sub_res[31]};
     if (a[31] ~^ b[31]) uo = {31'b0, sub_res[31]};
     else uo = {31'b0, b[31]};
