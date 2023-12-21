@@ -5,7 +5,7 @@ module r_shifter (
     output reg [31:0] o
 );
 
-  always @(*) begin
+  always_comb begin
     o = a;
     if (arith) begin  // arithmetic
       if (b[0]) o = {{1{a[31]}}, o[31:1]};

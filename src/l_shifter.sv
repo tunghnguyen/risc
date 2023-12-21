@@ -4,7 +4,7 @@ module l_shifter (
     output reg  [31:0] o
 );
 
-  always @(*) begin
+  always_comb begin
     o = a;
     if (b[0]) o = {o[31-1:0], 1'b0};
     if (b[1]) o = {o[31-2:0], 2'b0};
