@@ -39,7 +39,7 @@ module alu (
       .o(srl_res)
   );
 
-  always @(*) begin
+  always_comb begin
     case (alu_op[2:0])
       3'h0: o = add_res;
       3'h1: o = sll_res;
@@ -49,6 +49,7 @@ module alu (
       3'h5: o = srl_res;
       3'h6: o = a | b;
       3'h7: o = a & b;
+      default: o = 32'b0;
     endcase
   end
 
