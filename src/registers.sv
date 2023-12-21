@@ -9,7 +9,7 @@ module registers (
     output reg [31:0] r_dat1
 );
 
-  reg [31:0] regs[31:0];
+  reg [31:0] regs[32];
   initial regs[0] = 32'b0;
 
   assign r_dat0 = regs[r_reg0];
