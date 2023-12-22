@@ -8,28 +8,18 @@ module dat_mem (
     output reg [31:0] r_dat
 );
 
-  reg [31:0] mem[16];
+  reg [31:0] mem[32];
 
   initial begin
     $readmemh("../memory/ram.mem", mem);
   end
 
+  assign r_dat = mem_read ? mem[addr>>2] : 32'b0;
+
   always @(posedge clk) begin
-
-    if (mem_read) begin
-      case (dat_op)
-        3'b010:  r_dat <= mem[addr>>2];
-        default: r_dat <= 32'b0;
-      endcase
-    end
-
     if (mem_write) begin
-      case (dat_op)
-        3'b010:  mem[addr>>2] <= w_dat;
-        default: ;
-      endcase
+      mem[addr>>2] <= w_dat;
     end
-
   end
 
 endmodule

@@ -11,6 +11,7 @@ module registers (
 
   reg [31:0] regs[32];
   initial regs = '{default: '0};
+  initial regs[2] = 32'd64;
 
   assign r_dat0 = regs[r_reg0];
   assign r_dat1 = regs[r_reg1];
