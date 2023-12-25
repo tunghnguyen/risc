@@ -17,7 +17,7 @@ module registers (
   assign r_dat1 = regs[r_reg1];
 
   always @(posedge clk) begin
-    if (write & |w_reg) regs[w_reg] <= w_dat;
+    if (write) regs[w_reg] <= |w_reg ? w_dat : 32'b0;
   end
 
 endmodule
