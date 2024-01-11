@@ -14,7 +14,9 @@ module dat_mem (
     $readmemh("../memory/ram.mem", mem);
   end
 
-  assign r_dat = mem_read ? mem[addr>>2] : 32'b0;
+  always @(negedge clk) begin
+    r_dat <= mem_read ? mem[addr>>2] : 32'b0;
+  end
 
   always @(posedge clk) begin
     if (mem_write) begin
